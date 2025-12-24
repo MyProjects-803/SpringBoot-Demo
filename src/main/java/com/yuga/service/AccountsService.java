@@ -6,11 +6,8 @@ import com.yuga.request.AccountsRequestDto;
 import com.yuga.response.AccountDetailsResponseDto;
 import com.yuga.response.AccountsResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.time.Instant;
 import java.util.Optional;
 
