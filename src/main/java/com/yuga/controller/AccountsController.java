@@ -1,6 +1,7 @@
 package com.yuga.controller;
 
 import com.yuga.request.AccountsRequestDto;
+import com.yuga.response.AccountDetailsResponseDto;
 import com.yuga.response.AccountsResponseDto;
 import com.yuga.service.AccountsService;
 import lombok.Getter;
@@ -21,9 +22,10 @@ public class AccountsController {
         return ResponseEntity.ok(responseDto);
     }
 
-    @GetMapping
-    public ResponseEntity<String> fetchAccountInfo(){
-        return ResponseEntity.ok("fetch account details successfully");
+    @GetMapping("/get")
+    public ResponseEntity<AccountDetailsResponseDto> fetchAccountInfo(@RequestParam Long aadhar){
+        AccountDetailsResponseDto responseDto = accountsService.getAccountInfo(aadhar);
+        return ResponseEntity.ok(responseDto);
     }
 
 
