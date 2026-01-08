@@ -1,8 +1,10 @@
 package com.yuga.service;
 
 import com.yuga.entity.ProductsEntity;
+import com.yuga.exceptions.ProductNotFoundException;
 import com.yuga.repo.ProductsRepo;
 import com.yuga.request.ProductsRequestDto;
+import com.yuga.response.ProductsDetailsResponseDto;
 import com.yuga.response.ProductsResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,5 +31,18 @@ public class ProductsService {
         ProductsResponseDto responseDto = new ProductsResponseDto();
         responseDto.setMsg("Product info saved successfully for the Product id: "+ entity.getProductId());
         return responseDto;
+    }
+
+    public ProductsDetailsResponseDto getProductById(Long productId) {
+
+        ProductsEntity product = productsRepo.findById(productId)
+                .orElseThrow(() ->
+                        new ProductNotFoundException("Product not found with id: " + productId));
+
+        ProductsDetailsResponseDto response = new ProductsDetailsResponseDto();
+        response.setProductName(product.getProductName());
+        response.setStatus(product.getStatus());
+
+        return response;
     }
 }
